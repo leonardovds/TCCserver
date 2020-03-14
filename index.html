@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=IE11">
+    <title>Oficina</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+
+        function manda(valor) {
+            socket.emit('chat message', valor);    
+        }
+		
+		function manda_button(valor) {
+            socket.emit('button message', valor);    
+        }
+
+        socket.on('button message', function(msg){
+            document.getElementById('teste').innerHTML = msg;            
+        });
+
+
+    </script>
+</head>
+<body>
+    <h1>Teste</h1>
+		<button onclick="manda_button('Chamou robo');">Chamar robo</button>
+        <p>Valor: </p>
+		<p id="teste"></p>
+
+</body>
+</html>
